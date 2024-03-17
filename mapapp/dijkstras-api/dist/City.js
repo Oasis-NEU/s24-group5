@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const citySchema = new mongoose_1.default.Schema({
     name: String,
+    floorLevel: Number,
+    isTunnelEntry: Boolean,
     neighbors: [{ name: String, distance: Number }]
 });
 const City = mongoose_1.default.model('City', citySchema);

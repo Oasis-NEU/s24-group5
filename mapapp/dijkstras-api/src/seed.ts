@@ -6,94 +6,81 @@ db.once('open', async () => {
 
   const cities = [
     {
-      name: 'paris',
+      name: 'East Village',
+      floorLevel:1,
+      isTunnelEntry: false,
       neighbors: [
-        { name: 'rome', distance: 10 },
-        { name: 'london', distance: 20 },
-        { name: 'miami', distance: 30 },
+        { name: 'Hurtig Hall', distance: 256 },
+        { name: 'Mugar Life Sciences Building', distance: 315 }
       ],
     },
     {
-      name: 'rome',
+      name: 'Hurtig Hall',
+      floorLevel:1,
+      isTunnelEntry: false,
       neighbors: [
-        { name: 'paris', distance: 10 },
-        { name: 'madrid', distance: 15 },
-        { name: 'tokyo', distance: 25 },
+        { name: 'East Village', distance: 256 },
+        { name: 'Mugar Life Sciences Building', distance: 108 }
       ],
     },
     {
-      name: 'london',
+      name: 'Mugar Life Sciences Building',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'paris', distance: 20 },
-        { name: 'miami', distance: 10 },
-        { name: 'sydney', distance: 40 },
+        { name: 'East Village', distance: 315 },
+        { name: 'Hurtig Hall', distance: 108 },
+        { name: 'Dodge Hall', distance: 280 },
+        { name: 'Ell Hall', distance: 75 }
       ],
     },
     {
-      name: 'miami',
+      name: 'Dodge Hall',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'paris', distance: 30 },
-        { name: 'london', distance: 10 },
-        { name: 'quito', distance: 35 },
+        { name: 'Mugar Life Sciences Building', distance: 280},
+        { name: 'Ell Hall', distance: 50}
       ],
     },
     {
-      name: 'madrid',
+      name: 'Ell Hall',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'rome', distance: 15 },
-        { name: 'istanbul', distance: 12 },
-        { name: 'dubai', distance: 22 },
+        { name: 'Mugar Life Sciences Building', distance: 75},
+        { name: 'Dodge Hall', distance: 50},
+        { name: 'Curry Student Center', distance: 350},
+        { name: 'Hayden Hall', distance: 253}
       ],
     },
     {
-      name: 'tokyo',
+      name: 'Curry Student Center',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'rome', distance: 25 },
-        { name: 'dubai', distance: 18 },
+        { name: 'Ell Hall', distance: 350},
+        { name: 'Hayden Hall', distance: 110},
+        { name: 'Snell Library', distance: 130}
       ],
     },
     {
-      name: 'sydney',
+      name: 'Hayden Hall',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'london', distance: 40 },
-        { name: 'jerusalem', distance: 28 },
+        { name: 'Curry Student Center', distance: 110},
+        { name: 'Ell Hall', distance: 253},
+        { name: 'Snell Library', distance: 270}
       ],
     },
     {
-      name: 'quito',
+      name: 'Snell Library',
+      floorLevel:1,
+      isTunnelEntry: true,
       neighbors: [
-        { name: 'miami', distance: 35 },
-        { name: 'toronto', distance: 45 },
-      ],
-    },
-    {
-      name: 'istanbul',
-      neighbors: [
-        { name: 'madrid', distance: 12 },
-        { name: 'jerusalem', distance: 20 },
-
-      ],
-    },
-    {
-      name: 'dubai',
-      neighbors: [
-        { name: 'madrid', distance: 22 },
-        { name: 'tokyo', distance: 18 },
-        { name: 'toronto', distance: 30 },
-      ],
-    },
-    {
-      name: 'jerusalem',
-      neighbors: [
-        { name: 'sydney', distance: 28 },
-        { name: 'istanbul', distance: 20 },
-      ],
-    },
-    {
-      name: 'toronto',
-      neighbors: [
-        { name: 'quito', distance: 45 },
-        { name: 'dubai', distance: 30 },
+        { name: 'Curry Student Center', distance: 130},
+        { name: 'Hayden Hall', distance: 270}
       ],
     },
 

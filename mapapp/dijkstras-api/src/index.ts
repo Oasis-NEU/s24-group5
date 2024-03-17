@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import db from './db';
-import City, {ICity} from './City';
+import Location, {ILocation} from './Location';
 import dijkstra from './dijkstras';
 
 
@@ -16,30 +16,31 @@ interface Neighbors {
 
 }
 
-app.get('/cities', async (req, res) => {
+app.get('/locations', async (req, res) => {
   try {
-    const cities = await City.find();
-    res.json(cities);
+    const locations = await Location.find();
+    console.log('success fetching locations');
+    res.json(locations);
   } catch(error) {
-    console.log('Error fetching cities', error);
-    res.status(500).json({error: 'Error fetching cities'});
+    console.log('Error fetching locations', error);
+    res.status(500).json({error: 'Error fetching locations'});
   }
 });
 
 app.post('/calculate-path', async (req, res) => {
-  const { startCity, endCity } = req.body;
+  const { startLocation, endLocation } = req.body;
 
-  const cities: ICity[] = await City.find();
+  const locations: ILocation[] = await Location.find();
   const graph: Record<string, Neighbors> = {};
 
-  cities.forEach((city) => {
-    graph[city.name] = {};
-    city.neighbors.forEach((neighbor) => {
-      graph[city.name][neighbor.name] = neighbor.distance;
+  locations.forEach((location) => {
+    graph[location.name] = {};
+    location.neighbors.forEach((neighbor) => {
+      graph[location.name][neighbor.name] = neighbor.distance;
     });
   });
 
-  const shortestPath = dijkstra(graph, startCity, endCity);
+  const shortestPath = dijkstra(graph, startLocation, endLocation);
   res.json({ shortestPath });
 });
 

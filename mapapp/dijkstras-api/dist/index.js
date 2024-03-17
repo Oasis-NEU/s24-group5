@@ -23,7 +23,7 @@ app.get('/locations', async (req, res) => {
     }
 });
 app.post('/calculate-path', async (req, res) => {
-    const { startLocation, endLocation } = req.body;
+    const { startLocation, endLocation, goUnderground } = req.body;
     const locations = await Location_1.default.find();
     const graph = {};
     locations.forEach((location) => {
@@ -32,7 +32,7 @@ app.post('/calculate-path', async (req, res) => {
             graph[location.name][neighbor.name] = neighbor.distance;
         });
     });
-    const shortestPath = (0, dijkstras_1.default)(graph, startLocation, endLocation);
+    const shortestPath = (0, dijkstras_1.default)(graph, startLocation, endLocation, goUnderground);
     res.json({ shortestPath });
 });
 db_1.default.once('open', () => {

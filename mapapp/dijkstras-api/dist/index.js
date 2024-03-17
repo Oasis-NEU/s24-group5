@@ -28,6 +28,8 @@ app.post('/calculate-path', async (req, res) => {
     const graph = {};
     locations.forEach((location) => {
         graph[location.name] = {};
+        graph[location.floorLevel] = {};
+        graph[location.isTunnelEntry.toString()] = {};
         location.neighbors.forEach((neighbor) => {
             graph[location.name][neighbor.name] = neighbor.distance;
         });

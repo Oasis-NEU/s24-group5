@@ -35,6 +35,8 @@ app.post('/calculate-path', async (req, res) => {
 
   locations.forEach((location) => {
     graph[location.name] = {};
+    graph[location.floorLevel] = {};
+    graph[location.isTunnelEntry.toString()] = {}; // Fix: Change index type to string
     location.neighbors.forEach((neighbor) => {
       graph[location.name][neighbor.name] = neighbor.distance;
     });

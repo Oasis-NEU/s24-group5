@@ -28,7 +28,7 @@ app.get('/locations', async (req, res) => {
 });
 
 app.post('/calculate-path', async (req, res) => {
-  const { startLocation, endLocation } = req.body;
+  const { startLocation, endLocation , goUnderground} = req.body;
 
   const locations: ILocation[] = await Location.find();
   const graph: Record<string, Neighbors> = {};
@@ -40,7 +40,7 @@ app.post('/calculate-path', async (req, res) => {
     });
   });
 
-  const shortestPath = dijkstra(graph, startLocation, endLocation);
+  const shortestPath = dijkstra(graph, startLocation, endLocation, goUnderground);
   res.json({ shortestPath });
 });
 

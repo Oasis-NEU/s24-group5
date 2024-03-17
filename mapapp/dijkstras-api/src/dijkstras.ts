@@ -18,7 +18,7 @@ I also want to see if we can hide my MongoDB password from the public.
 
 
 
-export default function dijkstra(graph: Record<string, Neighbors>, start: string, end: string): string[] {
+export default function dijkstra(graph: Record<string, Neighbors>, start: string, end: string, goUnderground: boolean): string[] {
     const distances: Record<string, number> = {};
     const previous: Record<string, string | null> = {};
     const queue: string[] = [];

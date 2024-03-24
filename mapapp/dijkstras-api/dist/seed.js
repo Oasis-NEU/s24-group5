@@ -14,7 +14,8 @@ db_1.default.once('open', async () => {
             isTunnelEntry: false,
             neighbors: [
                 { name: 'Hurtig Hall', distance: 256 },
-                { name: 'Mugar Life Sciences Building', distance: 315 }
+                { name: 'Mugar Life Sciences Building', distance: 315 },
+                { name: 'Cullinane Hall', distance: 30 },
             ],
         },
         {
@@ -23,7 +24,8 @@ db_1.default.once('open', async () => {
             isTunnelEntry: false,
             neighbors: [
                 { name: 'East Village', distance: 256 },
-                { name: 'Mugar Life Sciences Building', distance: 108 }
+                { name: 'Mugar Life Sciences Building', distance: 108 },
+                { name: 'Cullinane Hall', distance: 20 },
             ],
         },
         {
@@ -31,10 +33,12 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Mugar Hall Tunnel', distance: 0 },
                 { name: 'East Village', distance: 315 },
                 { name: 'Hurtig Hall', distance: 108 },
                 { name: 'Dodge Hall', distance: 280 },
-                { name: 'Ell Hall', distance: 75 }
+                { name: 'Ell Hall', distance: 75 },
+                { name: 'Cullinane Hall', distance: 50 },
             ],
         },
         {
@@ -42,6 +46,7 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Dodge Hall Tunnel', distance: 0 },
                 { name: 'Mugar Life Sciences Building', distance: 280 },
                 { name: 'Ell Hall', distance: 50 }
             ],
@@ -51,6 +56,7 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Ell Hall Tunnel', distance: 0 },
                 { name: 'Mugar Life Sciences Building', distance: 75 },
                 { name: 'Dodge Hall', distance: 50 },
                 { name: 'Curry Student Center', distance: 350 },
@@ -62,9 +68,11 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Curry Student Center Tunnel', distance: 0 },
                 { name: 'Ell Hall', distance: 350 },
                 { name: 'Hayden Hall', distance: 110 },
-                { name: 'Snell Library', distance: 130 }
+                { name: 'Snell Library', distance: 130 },
+                { name: 'Churchill Hall', distance: 120 },
             ],
         },
         {
@@ -72,6 +80,7 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Hayden Hall Tunnel', distance: 0 },
                 { name: 'Curry Student Center', distance: 110 },
                 { name: 'Ell Hall', distance: 253 },
                 { name: 'Snell Library', distance: 270 }
@@ -82,8 +91,10 @@ db_1.default.once('open', async () => {
             floorLevel: 1,
             isTunnelEntry: true,
             neighbors: [
+                { name: 'Snell Library Tunnel', distance: 0 },
                 { name: 'Curry Student Center', distance: 130 },
-                { name: 'Hayden Hall', distance: 270 }
+                { name: 'Hayden Hall', distance: 270 },
+                { name: 'Snell Engineering', distance: 30 }
             ],
         },
         {
@@ -201,6 +212,61 @@ db_1.default.once('open', async () => {
                 { name: 'Snell Library', distance: 0 },
                 { name: 'Churchill Hall Tunnel', distance: 100 },
                 { name: 'Hayden Hall Tunnel', distance: 125 },
+            ],
+        },
+        {
+            name: 'Cullinane Hall',
+            floorLevel: 1,
+            isTunnelEntry: false,
+            neighbors: [
+                { name: 'Mugar Life Sciences Building', distance: 50 },
+                { name: 'East Village', distance: 30 },
+                { name: 'Hurtig Hall', distance: 20 },
+            ],
+        },
+        {
+            name: 'Churchill Hall',
+            floorLevel: 1,
+            isTunnelEntry: false,
+            neighbors: [
+                { name: 'Churchill Hall Tunnel', distance: 0 },
+                { name: 'Cabot Gym', distance: 50 },
+                { name: 'Forsyth Hall', distance: 10 },
+                { name: 'Snell Engineering', distance: 20 },
+                { name: 'Snell Library', distance: 30 },
+                { name: 'Curry Student Center', distance: 120 },
+            ],
+        },
+        {
+            name: 'Cabot Gym',
+            floorLevel: 1,
+            isTunnelEntry: false,
+            neighbors: [
+                { name: 'Cabot Gym Tunnel', distance: 0 },
+                { name: 'Churchill Hall', distance: 50 },
+                { name: 'Forsyth Hall', distance: 10 },
+            ],
+        },
+        {
+            name: 'Forsyth Hall',
+            floorLevel: 1,
+            isTunnelEntry: false,
+            neighbors: [
+                { name: 'Cabot Gym', distance: 10 },
+                { name: 'Churchill Hall', distance: 10 },
+                { name: 'Snell Engineering', distance: 20 },
+                { name: 'Snell Library', distance: 25 },
+            ],
+        },
+        {
+            name: 'Snell Engineering',
+            floorLevel: 1,
+            isTunnelEntry: false,
+            neighbors: [
+                { name: 'Cabot Gym', distance: 50 },
+                { name: 'Forsyth Hall', distance: 20 },
+                { name: 'Churchill Hall', distance: 20 },
+                { name: 'Snell Library', distance: 25 },
             ],
         },
     ];

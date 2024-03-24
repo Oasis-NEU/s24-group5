@@ -29,20 +29,37 @@ app.get('/locations', async (req, res) => {
 
 app.post('/calculate-path', async (req, res) => {
   const { startLocation, endLocation , goUnderground} = req.body;
-
   const locations: ILocation[] = await Location.find();
   const graph: Record<string, Neighbors> = {};
 
-  locations.forEach((location) => {
-    graph[location.name] = {};
-    graph[location.floorLevel] = {};
-    graph[location.isTunnelEntry.toString()] = {}; // Fix: Change index type to string
-    location.neighbors.forEach((neighbor) => {
-      graph[location.name][neighbor.name] = neighbor.distance;
+  if (goUnderground) {
+    locations.forEach((location) => {
+      graph[location.name] = {};
+      graph[location.floorLevel] = {};
+      graph[location.isTunnelEntry.toString()] = {}; // Fix: Change index type to string
+      location.neighbors.forEach((neighbor) => {
+        if (neighbor.name.includes('Tunnel')) {
+          graph[location.name][neighbor.name] = neighbor.distance / 99999;
+        } else {
+          graph[location.name][neighbor.name] = neighbor.distance;
+        }
+        
+      });
     });
-  });
+  } else {
+    locations.forEach((location) => {
+      graph[location.name] = {};
+      graph[location.floorLevel] = {};
+      graph[location.isTunnelEntry.toString()] = {}; // Fix: Change index type to string
+      location.neighbors.forEach((neighbor) => {
+        graph[location.name][neighbor.name] = neighbor.distance;
+      });
+    });
+  }
 
-  const shortestPath = dijkstra(graph, startLocation, endLocation, goUnderground);
+  
+
+  const shortestPath = dijkstra(graph, startLocation, endLocation);
   res.json({ shortestPath });
 });
 

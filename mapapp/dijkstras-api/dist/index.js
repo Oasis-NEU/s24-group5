@@ -26,15 +26,32 @@ app.post('/calculate-path', async (req, res) => {
     const { startLocation, endLocation, goUnderground } = req.body;
     const locations = await Location_1.default.find();
     const graph = {};
-    locations.forEach((location) => {
-        graph[location.name] = {};
-        graph[location.floorLevel] = {};
-        graph[location.isTunnelEntry.toString()] = {};
-        location.neighbors.forEach((neighbor) => {
-            graph[location.name][neighbor.name] = neighbor.distance;
+    if (goUnderground) {
+        locations.forEach((location) => {
+            graph[location.name] = {};
+            graph[location.floorLevel] = {};
+            graph[location.isTunnelEntry.toString()] = {};
+            location.neighbors.forEach((neighbor) => {
+                if (neighbor.name.includes('Tunnel')) {
+                    graph[location.name][neighbor.name] = neighbor.distance / 99999;
+                }
+                else {
+                    graph[location.name][neighbor.name] = neighbor.distance;
+                }
+            });
         });
-    });
-    const shortestPath = (0, dijkstras_1.default)(graph, startLocation, endLocation, goUnderground);
+    }
+    else {
+        locations.forEach((location) => {
+            graph[location.name] = {};
+            graph[location.floorLevel] = {};
+            graph[location.isTunnelEntry.toString()] = {};
+            location.neighbors.forEach((neighbor) => {
+                graph[location.name][neighbor.name] = neighbor.distance;
+            });
+        });
+    }
+    const shortestPath = (0, dijkstras_1.default)(graph, startLocation, endLocation);
     res.json({ shortestPath });
 });
 db_1.default.once('open', () => {

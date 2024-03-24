@@ -33,7 +33,7 @@ app.post('/calculate-path', async (req, res) => {
             graph[location.isTunnelEntry.toString()] = {};
             location.neighbors.forEach((neighbor) => {
                 if (neighbor.name.includes('Tunnel')) {
-                    graph[location.name][neighbor.name] = neighbor.distance / 99999;
+                    graph[location.name][neighbor.name] = 0;
                 }
                 else {
                     graph[location.name][neighbor.name] = neighbor.distance;
